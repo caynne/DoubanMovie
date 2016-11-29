@@ -13,11 +13,11 @@ data = pd.read_csv(path+'MrDonkey.csv',names = ['name','comment','grade'])
 a = []
 for i in range(100):
     comment = data['comment'][i]
-    fenci = list(jieba.cut(comment))
-    a.append(fenci)
-
-
-#txt = ','.join([t for t in a])
+    words = list(jieba.cut(comment))
+    for word in words:
+        if(word>1):
+            a.append(word)
+    fenci = ','.join(a)
 
 alice_mask = np.array(PIL.Image.open(path+'water.jpg'))
 wordcloud = WordCloud(font_path=path+'华文细黑.ttf',
@@ -29,7 +29,7 @@ wordcloud = WordCloud(font_path=path+'华文细黑.ttf',
                       max_words=2000,
                       max_font_size=60,
                       random_state=42)
-wordcloud = wordcloud.generate(str(a))
+wordcloud = wordcloud.generate(fenci)
 plt.imshow(wordcloud)
 plt.axis('off')
 plt.show()
