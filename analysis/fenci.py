@@ -10,14 +10,14 @@ import matplotlib.pyplot as plt
 
 path = '/Users/zidongceshi/Downloads/DoubanMovie/'
 data = pd.read_csv(path+'MrDonkey.csv',names = ['name','comment','grade'])
-a = []
+#a = []
 fenci = {}
 for i in range(10000):
     comment = data['comment'][i]
     words = list(jieba.cut(comment))
     for word in words:
         if(word>1):
-            a.append(word)
+            #a.append(word)
             fenci[word] = fenci.get(word,0) + 1
 fenciSort = sorted(fenci.iteritems(),key= lambda d:d[1],reverse=True)
 strFenci = [fenciSort[i][0] for i in range(2000)]
